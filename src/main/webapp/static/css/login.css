@@ -1,0 +1,130 @@
+.login_container {
+    margin: auto;
+    position: relative;
+    width: 1060px;
+    z-index: 1;
+}
+
+.login_container .login_box {
+    margin-left: 95px;
+    padding: 50px 0 70px;
+    width: 870px;
+}
+
+.login_container .login_box .left {
+    float: left;
+    width: 450px;
+}
+
+.login_container .login_box .right {
+    float: left;
+    margin-left: 60px;
+    width: 360px;
+}
+
+.login_container .login_box .right .form_box {
+    border: 1px solid #E7E7E7;
+    height: 313px;
+    padding-left: 39px;
+    padding-top: 20px;
+}
+
+.login_container .login_box .right .form_box .item {
+    margin-bottom: 14px;
+}
+
+.login_container .login_box .right .form_box .item .label {
+    padding-bottom: 4px;
+    width: 270px;
+}
+
+.login_container .login_box .right .form_box .item .label .title {
+    color: #474747;
+    float: left;
+    font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.login_container .login_box .right .form_box .item .label .tips {
+    color: #DE2B3D;
+    float: left;
+    font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    margin-left: 2px;
+}
+
+.login_container .login_box .right .form_box .item .label a {
+    color: #505966;
+    float: right;
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+.login_container .login_box .right .form_box .item .field {
+    position: relative;
+}
+
+.login_container .login_box .right .form_box .item .field .username {
+    background: url("https://www.ocj.com.cn/common/theme/v1/images/passport/newlogin.inputbg1.jpg") no-repeat scroll 0 0 transparent;
+    color: #9DA6AB;
+    font-size: 14px;
+    overflow: hidden;
+    width: 203px;
+}
+
+.login_container .login_box .right .form_box .item .field .password {
+    background: url("https://www.ocj.com.cn/common/theme/v1/images/passport/newlogin.inputbg2.jpg") no-repeat scroll 0 0 transparent;
+    color: #9DA6AB;
+    font-size: 14px;
+    overflow: hidden;
+    width: 203px;
+}
+
+.login_container .login_box .right .form_box .item .field .captcha {
+    padding-left: 10px;
+    padding-right: 20px;
+    width: 40px;
+}
+
+.login_container .login_box .right .form_box .item .field .common {
+    border: 1px solid #C9C8CF;
+    color: #333333;
+    font-size: 16px;
+    height: 20px;
+    line-height: 20px;
+    padding: 6px 30px 7px 35px;
+}
+
+.login_container .login_box .right .form_box .item .field .exception {
+    border: 1px solid #C9C8CF;
+    color: #333333;
+    font-size: 16px;
+    height: 20px;
+    line-height: 20px;
+    padding: 6px 30px 7px 10px;
+}
+
+.login_container .login_box .right .form_box .item .field .blue {
+    border-color: #239CDC;
+    box-shadow: 0 0 6px #A6E0FF;
+}
+
+.login_container .login_box .right .form_box .item .field .error {
+    border-color: #DE2B3D;
+    box-shadow: 0 0 6px #FF97A1;
+}
+
+.login_container .login_box .right .form_box .item .field .clear {
+    background: url("https://www.ocj.com.cn/common/theme/v1/images/passport/newlogin.cross1.gif") no-repeat scroll 0 0 transparent;
+    display: none;
+    height: 9px;
+    left: 250px;
+    position: absolute;
+    top: 13px;
+    width: 9px;
+}
+
+.login_container .login_box .right .form_box .item .field .clear_show {
+    display: block;
+}

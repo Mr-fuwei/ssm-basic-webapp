@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc
+           http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 加载配置文件 -->
+    <context:property-placeholder location="classpath*:config.properties"/>
+
+    <!-- 配置自动扫描目录 -->
+    <context:component-scan base-package="com.mochousoft.base.controller"/>
+
+    <!-- 注解驱动，启用SpringMVC相关注解功能 -->
+    <mvc:annotation-driven>
+        <!-- 取消请求路径后缀自动匹配功能 -->
+        <mvc:path-matching suffix-pattern="false"/>
+        <!-- 消息转换器 -->
+        <mvc:message-converters>
+            <!-- 设置输出字符串编码方式，防止乱码 -->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8" index="0"/>
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/plain;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+            <!-- 避免IE执行AJAX时，返回JSON出现下载文件情况 -->
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4">
+                <property name="fastJsonConfig">
+                    <bean class="com.alibaba.fastjson.support.config.FastJsonConfig">
+                        <property name="dateFormat" value="yyyy-MM-dd HH:mm:ss"/>
+                    </bean>
+                </property>
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!-- 配置SpringMVC的视图解析器 -->
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"/>
+        <property name="order" value="1"/>
+    </bean>
+
+    <!-- 将无法Mapping到Controller的请求交给default-servlet-handler处理，如静态文件 -->
+    <mvc:default-servlet-handler/>
+
+    <!-- 定义无需Controller的动态请求映射地址 -->
+    <mvc:view-controller path="/" view-name="/index"/>
+
+    <!-- SpringMVC上传文件配置 -->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 解析request请求的默认编码格式，默认是ISO-8859-1 -->
+        <property name="defaultEncoding" value="UTF-8"/>
+        <!-- 设置上传文件的总大小不能超过1M（1*1024*1024）。默认是-1，表示无限制 -->
+        <property name="maxUploadSize" value="1048576"/>
+        <!-- 设置文件上传时允许写到内存中的最大值，以字节为单位计算，默认是10240 -->
+        <property name="maxInMemorySize" value="409600"/>
+    </bean>
+
+    <!-- SpringMVC异常配置 -->
+    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <!-- 定义默认的异常处理页面 -->
+        <property name="defaultErrorView" value="error_default"/>
+        <!-- 定义异常处理页面用来获取异常信息的变量名，默认为exception -->
+        <property name="exceptionAttribute" value="exception"/>
+        <!-- 定义需要特殊处理的异常，key为异常的类名或全路径名，value为异常页面 -->
+        <property name="exceptionMappings">
+            <props>
+                <prop key="java.lang.Exception">error_500</prop>
+            </props>
+        </property>
+    </bean>
+</beans>
