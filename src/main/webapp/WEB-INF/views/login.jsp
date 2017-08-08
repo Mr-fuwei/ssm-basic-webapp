@@ -182,7 +182,7 @@
             success : function(data) {
                 data = JSON.parse(data);
                 if (data.status) {
-                    window.location.href = '${ctx}';
+                    window.location.href = '/';
                 } else {
                     alert(data.message);
                 }
